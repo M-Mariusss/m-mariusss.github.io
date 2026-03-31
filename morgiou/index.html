@@ -2,9 +2,400 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Morgiou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M.Marius</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      height: 100%;
+      background: #ffffff;
+      font-family: 'Cormorant Garamond', serif;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .scene {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 3rem 2rem;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 6vw, 4rem);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      color: #1a1612;
+      animation: fadeUp 1s ease both;
+      text-align: center;
+    }
+
+    .divider {
+      width: 3.5rem;
+      height: 1px;
+      background: #888;
+      opacity: 0.5;
+      animation: expandLine 1.2s 0.2s ease both;
+    }
+
+    .player {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.85rem;
+      animation: fadeUp 1s 0.2s ease both;
+      width: min(680px, 88vw);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      width: 100%;
+    }
+
+    .waveform {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 28px;
+      flex: 1 1 0;
+      justify-content: flex-start;
+    }
+    .bar {
+      width: 3px;
+      border-radius: 2px;
+      background: #555;
+      opacity: 0.4;
+      height: 5px;
+    }
+    .waveform.active .bar {
+      animation: wave 1.1s ease-in-out infinite;
+      opacity: 0.65;
+    }
+    .bar:nth-child(1)  { animation-delay: 0.00s; }
+    .bar:nth-child(2)  { animation-delay: 0.10s; }
+    .bar:nth-child(3)  { animation-delay: 0.20s; }
+    .bar:nth-child(4)  { animation-delay: 0.30s; }
+    .bar:nth-child(5)  { animation-delay: 0.15s; }
+    .bar:nth-child(6)  { animation-delay: 0.05s; }
+    .bar:nth-child(7)  { animation-delay: 0.25s; }
+    .bar:nth-child(8)  { animation-delay: 0.35s; }
+    .bar:nth-child(9)  { animation-delay: 0.10s; }
+    .bar:nth-child(10) { animation-delay: 0.20s; }
+    .bar:nth-child(11) { animation-delay: 0.00s; }
+    .bar:nth-child(12) { animation-delay: 0.30s; }
+
+    @keyframes wave {
+      0%, 100% { height: 5px; }
+      50%       { height: 22px; }
+    }
+
+    .btn-play {
+      width: 74px;
+      height: 74px;
+      min-width: 74px;
+      border-radius: 50%;
+      border: 1.6px solid #222;
+      background: #fff;
+      padding: 0;
+      cursor: pointer;
+      flex: 0 0 auto;
+      transition: transform 0.2s, background 0.2s;
+      position: relative;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      box-shadow: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .btn-play img {
+      display: none;
+    }
+    .btn-play .icon-play,
+    .btn-play .icon-pause {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      background: transparent;
+      border-radius: 50%;
+    }
+    .btn-play .icon-play::before {
+      content: "";
+      display: block;
+      margin-left: 4px;
+      width: 0;
+      height: 0;
+      border-top: 11px solid transparent;
+      border-bottom: 11px solid transparent;
+      border-left: 16px solid #111;
+    }
+    .btn-play .icon-pause {
+      display: none;
+      gap: 6px;
+    }
+    .btn-play .icon-pause::before,
+    .btn-play .icon-pause::after {
+      content: "";
+      width: 5px;
+      height: 20px;
+      background: #111;
+      border-radius: 1px;
+      display: block;
+    }
+    .btn-play:focus,
+    .btn-play:focus-visible,
+    .btn-play:active {
+      outline: none;
+      box-shadow: none;
+      background: #fff;
+    }
+    .btn-play::-moz-focus-inner { border: 0; }
+    .btn-play.playing .icon-play { display: none; }
+    .btn-play.playing .icon-pause { display: flex; }
+    .btn-play:hover { transform: scale(1.05); }
+    .btn-play:active { transform: scale(0.97); }
+
+    .volume-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: 0;
+      flex: 1 1 0;
+      justify-content: flex-end;
+    }
+    .volume-wrap svg { fill: #888; flex-shrink: 0; }
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 80px;
+      height: 1px;
+      background: rgba(0,0,0,0.2);
+      outline: none;
+      cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #333;
+    }
+
+    .track-info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .track-title {
+  font-size: 1.6rem;
+  letter-spacing: 0.03em;
+  color: #555;
+  font-style: normal;
+  font-weight: 400;
+}
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(0,0,0,0.15);
+      cursor: pointer;
+      position: relative;
+      overflow: visible;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #777;
+      width: 0%;
+      min-width: 0;
+      transition: width 0.15s linear;
+      position: relative;
+    }
+    .progress-handle {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      width: 6px;
+      height: 16px;
+      background: #8a8a8a;
+      transform: translate(-50%, -50%);
+      border-radius: 1px;
+      pointer-events: none;
+    }
+    .progress-times {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: #999;
+    }
+
+    /* Oeuvre — dans le flux, centrée, grande */
+    .artwork {
+      width: min(280px, 75vw);
+      animation: fadeUp 1s 0.4s ease both;
+      align-self: center;
+    }
+    .artwork img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes expandLine {
+      from { width: 0; opacity: 0; }
+      to   { width: 3.5rem; opacity: 0.5; }
+    }
+
+    @media (max-width: 768px) {
+      .player {
+        width: min(92vw, 720px);
+      }
+      .controls {
+        gap: 1rem;
+      }
+      .btn-play {
+        width: 68px;
+        height: 68px;
+        min-width: 68px;
+      }
+      .track-title {
+        font-size: 1.45rem;
+      }
+    }
+
+  </style>
 </head>
 <body>
-  <h1>Morgiou</h1>
+
+<div class="scene">
+  <h1>M.Marius</h1>
+  <div class="divider"></div>
+
+  <div class="player">
+    <div class="controls">
+      <div class="waveform" id="waveform">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      </div>
+
+      <button class="btn-play" id="btnPlay" aria-label="Lecture / Pause">
+        <span class="icon-play"></span>
+        <span class="icon-pause"></span>
+      </button>
+
+      <div class="volume-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+        <input type="range" id="volume" min="0" max="1" step="0.02" value="1">
+      </div>
+    </div>
+
+    <div class="track-info">
+      <span class="track-title">Morgiou</span>
+      <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+        <div class="progress-handle" id="progressHandle"></div>
+      </div>
+      <div class="progress-times">
+        <span id="timeElapsed">0:00</span>
+        <span id="timeDuration">–:––</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Oeuvre dans le flux, sous le lecteur -->
+  <div class="artwork">
+    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou.png"
+</div>
+
+<audio id="audio" preload="auto">
+  <source src="https://pub-e95009eb67244c1fbdf9f0d298983b0a.r2.dev/morgiou.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    const blocked = (e.ctrlKey || e.metaKey) &&
+      ['c','u','s','a','p','i'].includes(e.key.toLowerCase());
+    if (blocked) e.preventDefault();
+    if (e.key === 'F12') e.preventDefault();
+  });
+  const audio       = document.getElementById('audio');
+  const btn         = document.getElementById('btnPlay');
+  const waveform    = document.getElementById('waveform');
+  const fill        = document.getElementById('progressFill');
+  const elapsed     = document.getElementById('timeElapsed');
+  const dur         = document.getElementById('timeDuration');
+  const volSlider   = document.getElementById('volume');
+  const progressBar = document.getElementById('progressBar');
+  const progressHandle = document.getElementById('progressHandle');
+
+  function fmt(s) {
+    if (!isFinite(s)) return '–:––';
+    return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+  }
+
+  function setPlaying(p) {
+    btn.classList.toggle('playing', p);
+    waveform.classList.toggle('active', p);
+  }
+
+  btn.addEventListener('click', async () => {
+    try {
+      if (audio.paused) { await audio.play(); setPlaying(true); }
+      else              { audio.pause(); setPlaying(false); }
+    } catch (e) {
+      console.error('Lecture impossible :', e);
+    }
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+    fill.style.width = pct + '%';
+    progressHandle.style.left = pct + '%';
+    elapsed.textContent = fmt(audio.currentTime);
+  });
+
+  audio.addEventListener('loadedmetadata', () => {
+    dur.textContent = fmt(audio.duration);
+    progressHandle.style.left = '0%';
+  });
+
+  audio.addEventListener('ended', () => setPlaying(false));
+  volSlider.addEventListener('input', () => { audio.volume = volSlider.value; });
+
+  progressBar.addEventListener('click', e => {
+    if (!audio.duration) return;
+    const rect = progressBar.getBoundingClientRect();
+    audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+  });
+</script>
 </body>
 </html>
