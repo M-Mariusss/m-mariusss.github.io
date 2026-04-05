@@ -1,75 +1,265 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Ondes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ondes</title>
 
-<style>
-body {
-  margin: 0;
-  background: #f5f5f5;
-  font-family: Helvetica, Arial, sans-serif;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  padding: 60px;
-}
+    body {
+      margin: 0;
+      background: #f3f3f3;
+      color: #222;
+      font-family: Helvetica, Arial, sans-serif;
+    }
 
-.artwork {
-  position: relative;
-}
+    .page {
+      min-height: 100vh;
+      padding: 28px 36px 40px;
+    }
 
-.artwork img {
-  width: 100%;
-  opacity: 0.7;
-  transition: 0.3s ease;
-}
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 48px;
+    }
 
-.overlay {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  color: white;
-  opacity: 0;
-  transition: 0.3s ease;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
+    .logo {
+      font-size: 26px;
+      letter-spacing: 6px;
+      text-decoration: none;
+      color: #222;
+      font-weight: 400;
+    }
 
-.artwork:hover img {
-  opacity: 1;
-}
+    .close {
+      text-decoration: none;
+      color: #111;
+      font-size: 30px;
+      line-height: 1;
+      transition: opacity 0.25s ease;
+    }
 
-.artwork:hover .overlay {
-  opacity: 1;
-}
-</style>
+    .close:hover {
+      opacity: 0.55;
+    }
 
+    .layout {
+      display: grid;
+      grid-template-columns: 2fr 0.95fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 44px 44px;
+      align-items: start;
+    }
+
+    .artwork {
+      position: relative;
+      display: block;
+      text-decoration: none;
+      color: white;
+      overflow: hidden;
+    }
+
+    .artwork img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      opacity: 0.78;
+      transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+
+    .artwork::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.12);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+    }
+
+    .caption {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 2;
+      font-size: 13px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+    }
+
+    .artwork:hover img {
+      opacity: 1;
+      transform: scale(1.02);
+      filter: saturate(1.02);
+    }
+
+    .artwork:hover::after {
+      opacity: 1;
+    }
+
+    .artwork:hover .caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .portrait {
+      aspect-ratio: 3 / 4;
+    }
+
+    .landscape {
+      grid-column: 2 / 4;
+      aspect-ratio: 16 / 7;
+      align-self: start;
+    }
+
+    .portrait img,
+    .landscape img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .text-block {
+      max-width: 360px;
+      padding-top: 8px;
+    }
+
+    .text-block p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.55;
+      color: #555;
+      font-weight: 300;
+    }
+
+    @media (max-width: 1100px) {
+      .layout {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .text-block {
+        max-width: 700px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        padding: 22px 20px 32px;
+      }
+
+      .topbar {
+        margin-bottom: 30px;
+      }
+
+      .logo {
+        font-size: 22px;
+        letter-spacing: 4px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+
+      .landscape {
+        grid-column: auto;
+        aspect-ratio: 16 / 10;
+      }
+
+      .portrait {
+        aspect-ratio: 3 / 4;
+      }
+
+      .text-block p {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .caption {
+        opacity: 1;
+        transform: none;
+      }
+
+      .artwork::after {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0,0,0,0.28), rgba(0,0,0,0.02));
+      }
+
+      .artwork img {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page">
+    <div class="topbar">
+      <a href="/projets/" class="logo">ONDES</a>
+      <a href="/projets/" class="close">✕</a>
+    </div>
 
-<div class="gallery">
+    <div class="layout">
+      <div class="gallery">
+        <a href="#" class="artwork portrait">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 1">
+          <div class="caption">Titre œuvre 1</div>
+        </a>
 
-  <div class="artwork">
-    <img src="TON LIEN IMAGE 1">
-    <div class="overlay">Œuvre 1</div>
+        <a href="#" class="artwork portrait">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 2">
+          <div class="caption">Titre œuvre 2</div>
+        </a>
+
+        <a href="#" class="artwork portrait">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 3">
+          <div class="caption">Titre œuvre 3</div>
+        </a>
+
+        <a href="#" class="artwork portrait">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 4">
+          <div class="caption">Titre œuvre 4</div>
+        </a>
+
+        <a href="#" class="artwork portrait">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 5">
+          <div class="caption">Titre œuvre 5</div>
+        </a>
+
+        <a href="#" class="artwork landscape">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 6">
+          <div class="caption">Titre œuvre 6</div>
+        </a>
+      </div>
+
+      <div class="text-block">
+        <p>
+          Texte de présentation du projet Ondes. Tu peux ici décrire la série,
+          son intention, sa matière, sa lumière, son rythme ou son rapport au
+          paysage. Ce bloc reprend l’esprit de ton visuel avec une colonne de
+          texte simple, sobre et élégante.
+        </p>
+      </div>
+    </div>
   </div>
-
-  <div class="artwork">
-    <img src="TON LIEN IMAGE 2">
-    <div class="overlay">Œuvre 2</div>
-  </div>
-
-  <div class="artwork">
-    <img src="TON LIEN IMAGE 3">
-    <div class="overlay">Œuvre 3</div>
-  </div>
-
-</div>
-
 </body>
 </html>
