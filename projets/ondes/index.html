@@ -4,214 +4,168 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ondes</title>
-
-<style>
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    background: #f3f3f3;
-    color: #222;
-    font-family: Helvetica, Arial, sans-serif;
-  }
-
-  .page {
-    min-height: 100vh;
-    padding: 22px 26px 36px;
-  }
-
-  .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 42px;
-  }
-
-  .logo {
-    font-size: 26px;
-    letter-spacing: 6px;
-    text-decoration: none;
-    color: #222;
-    font-weight: 400;
-  }
-
-  .close {
-    text-decoration: none;
-    color: #111;
-    font-size: 28px;
-    line-height: 1;
-    transition: opacity 0.25s ease;
-  }
-
-  .close:hover {
-    opacity: 0.55;
-  }
-
-  .layout {
-    display: grid;
-    grid-template-columns: minmax(0, 980px) 340px;
-    gap: 70px;
-    align-items: start;
-  }
-
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 240px);
-    gap: 34px 34px;
-    align-items: start;
-  }
-
-  .artwork {
-    position: relative;
-    display: block;
-    text-decoration: none;
-    color: white;
-    overflow: hidden;
-    width: 240px;
-  }
-
-  .portrait {
-    height: 320px;
-  }
-
-  .landscape {
-    width: 514px;
-    height: 176px;
-    grid-column: 2 / 4;
-  }
-
-  .artwork img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    opacity: 0.84;
-    transition: transform 0.45s ease, opacity 0.45s ease;
-  }
-
-  .artwork::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.14);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    pointer-events: none;
-  }
-
-  .caption {
-    position: absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    z-index: 2;
-    font-size: 12px;
-    letter-spacing: 1.6px;
-    text-transform: uppercase;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.35);
-  }
-
-  .artwork:hover img {
-    opacity: 1;
-    transform: scale(1.015);
-  }
-
-  .artwork:hover::after {
-    opacity: 1;
-  }
-
-  .artwork:hover .caption {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .text-block {
-    max-width: 340px;
-    padding-top: 4px;
-  }
-
-  .text-block p {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #555;
-    font-weight: 300;
-  }
-
-  @media (max-width: 1380px) {
-    .layout {
-      grid-template-columns: 1fr;
-      gap: 46px;
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f3f3f3;
+      color: #222;
+      font-family: Helvetica, Arial, sans-serif;
     }
-
-    .text-block {
-      max-width: 760px;
-    }
-  }
-
-  @media (max-width: 900px) {
-    .gallery {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .artwork,
-    .portrait,
-    .landscape {
-      width: 100%;
-      height: auto;
-      grid-column: auto;
-    }
-
-    .artwork img {
-      height: auto;
-      aspect-ratio: 3 / 4;
-    }
-
-    .landscape img {
-      aspect-ratio: 16 / 10;
-    }
-  }
-
-  @media (max-width: 640px) {
     .page {
-      padding: 20px 18px 28px;
+      min-height: 100vh;
+      padding: 18px 24px 28px;
     }
-
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+    .logo {
+      text-decoration: none;
+      color: #222;
+      font-size: 24px;
+      letter-spacing: 6px;
+      font-weight: 400;
+    }
+    .close {
+      text-decoration: none;
+      color: #111;
+      font-size: 26px;
+      line-height: 1;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 900px 360px;
+      gap: 56px;
+      align-items: start;
+    }
     .gallery {
-      grid-template-columns: 1fr;
-      gap: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 240px);
+      gap: 42px 62px;
+      align-items: start;
     }
-
-    .artwork,
-    .portrait,
-    .landscape {
+    .artwork {
+      position: relative;
+      display: block;
+      width: 240px;
+      text-decoration: none;
+      color: white;
+      overflow: hidden;
+    }
+    .portrait {
+      height: 340px;
+    }
+    .artwork img {
       width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      opacity: 0.88;
+      transition: transform 0.35s ease, opacity 0.35s ease;
     }
-
-    .caption {
-      opacity: 1;
-      transform: none;
-    }
-
     .artwork::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.12);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .caption {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      z-index: 2;
+      font-size: 12px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+    }
+    .artwork:hover img {
       opacity: 1;
-      background: linear-gradient(to top, rgba(0,0,0,0.25), rgba(0,0,0,0.03));
+      transform: scale(1.015);
     }
-
-    .artwork img,
-    .landscape img {
-      height: auto;
+    .artwork:hover::after {
+      opacity: 1;
+    }
+    .artwork:hover .caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .side-column {
+      min-height: 722px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .text-block p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #555;
+      font-weight: 300;
+    }
+    .side-image {
       width: 100%;
-      aspect-ratio: auto;
+      margin-top: 28px;
     }
-
-  }
-</style>
+    .side-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    @media (max-width: 1360px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+      }
+      .artwork {
+        width: 100%;
+      }
+      .portrait {
+        height: auto;
+      }
+      .artwork img {
+        aspect-ratio: 3 / 4;
+        object-fit: contain;
+      }
+      .side-column {
+        min-height: auto;
+        gap: 28px;
+      }
+    }
+    @media (max-width: 760px) {
+      .page {
+        padding: 18px 16px 24px;
+      }
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+      .logo {
+        font-size: 22px;
+        letter-spacing: 4px;
+      }
+      .caption {
+        opacity: 1;
+        transform: none;
+      }
+      .artwork::after {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0,0,0,0.22), rgba(0,0,0,0.03));
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="page">
@@ -221,51 +175,51 @@
     </div>
 
     <div class="layout">
-      
-<div class="gallery">
-  <a href="#" class="artwork portrait">
-    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png" alt="Œuvre 1">
-    <div class="caption">Titre œuvre 1</div>
-  </a>
+      <div class="gallery">
+        <a href="#" class="artwork portrait">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png" alt="Œuvre 1">
+          <div class="caption">Titre œuvre 1</div>
+        </a>
 
-  <a href="#" class="artwork portrait">
-    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/cirquerecadre%CC%81.png">
-    <div class="caption">Titre œuvre 2</div>
-  </a>
+        <a href="#" class="artwork portrait">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/cirquerecadre%CC%81.png" alt="Œuvre 2">
+          <div class="caption">Titre œuvre 2</div>
+        </a>
 
-  <a href="#" class="artwork portrait">
-    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png">
-    <div class="caption">Titre œuvre 3</div>
-  </a>
+        <a href="#" class="artwork portrait">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png" alt="Œuvre 3">
+          <div class="caption">Titre œuvre 3</div>
+        </a>
 
-  <a href="#" class="artwork portrait">
-    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png">
-    <div class="caption">Titre œuvre 4</div>
-  </a>
+        <a href="#" class="artwork portrait">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png" alt="Œuvre 4">
+          <div class="caption">Titre œuvre 4</div>
+        </a>
 
-  <a href="#" class="artwork portrait">
-    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png">
-    <div class="caption">Titre œuvre 5</div>
-  </a>
+        <a href="#" class="artwork portrait">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png" alt="Œuvre 5">
+          <div class="caption">Titre œuvre 5</div>
+        </a>
 
-  <a href="#" class="artwork portrait">
-    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png">
-    <div class="caption">Titre œuvre 6</div>
-  </a>
-
-</div>
+        <a href="#" class="artwork portrait">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png" alt="Œuvre 6">
+          <div class="caption">Titre œuvre 6</div>
         </a>
       </div>
 
-      <div class="text-block">
-        <p>
-          Texte de présentation du projet Ondes. Tu peux ici décrire la série,
-          son intention, sa matière, sa lumière, son rythme ou son rapport au
-          paysage. Ce bloc reprend l’esprit de ton visuel avec une colonne de
-          texte simple, sobre et élégante.
-        </p>
-         <div class="side-image">
-    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/tidal%20bore.png">
+      <div class="side-column">
+        <div class="text-block">
+          <p>
+            Texte de présentation du projet Ondes. Tu peux ici décrire la série,
+            son intention, sa matière, sa lumière, son rythme ou son rapport au
+            paysage. Ce bloc reprend l’esprit de ton visuel avec une colonne de
+            texte simple, sobre et élégante.
+          </p>
+        </div>
+
+        <div class="side-image">
+          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/tidal%20bore.png" alt="Œuvre 7">
+        </div>
       </div>
     </div>
   </div>
