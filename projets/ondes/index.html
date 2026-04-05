@@ -5,211 +5,212 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ondes</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+  * {
+    box-sizing: border-box;
+  }
 
-    body {
-      margin: 0;
-      background: #f3f3f3;
-      color: #222;
-      font-family: Helvetica, Arial, sans-serif;
-    }
+  body {
+    margin: 0;
+    background: #f3f3f3;
+    color: #222;
+    font-family: Helvetica, Arial, sans-serif;
+  }
 
-    .page {
-      min-height: 100vh;
-      padding: 28px 36px 40px;
-    }
+  .page {
+    min-height: 100vh;
+    padding: 22px 26px 36px;
+  }
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 48px;
-    }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 42px;
+  }
 
-    .logo {
-      font-size: 26px;
-      letter-spacing: 6px;
-      text-decoration: none;
-      color: #222;
-      font-weight: 400;
-    }
+  .logo {
+    font-size: 26px;
+    letter-spacing: 6px;
+    text-decoration: none;
+    color: #222;
+    font-weight: 400;
+  }
 
-    .close {
-      text-decoration: none;
-      color: #111;
-      font-size: 30px;
-      line-height: 1;
-      transition: opacity 0.25s ease;
-    }
+  .close {
+    text-decoration: none;
+    color: #111;
+    font-size: 28px;
+    line-height: 1;
+    transition: opacity 0.25s ease;
+  }
 
-    .close:hover {
-      opacity: 0.55;
-    }
+  .close:hover {
+    opacity: 0.55;
+  }
 
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 980px) 340px;
+    gap: 70px;
+    align-items: start;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 240px);
+    gap: 34px 34px;
+    align-items: start;
+  }
+
+  .artwork {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: white;
+    overflow: hidden;
+    width: 240px;
+  }
+
+  .portrait {
+    height: 320px;
+  }
+
+  .landscape {
+    width: 514px;
+    height: 176px;
+    grid-column: 2 / 4;
+  }
+
+  .artwork img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    opacity: 0.84;
+    transition: transform 0.45s ease, opacity 0.45s ease;
+  }
+
+  .artwork::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.14);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .caption {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    z-index: 2;
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+  }
+
+  .artwork:hover img {
+    opacity: 1;
+    transform: scale(1.015);
+  }
+
+  .artwork:hover::after {
+    opacity: 1;
+  }
+
+  .artwork:hover .caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .text-block {
+    max-width: 340px;
+    padding-top: 4px;
+  }
+
+  .text-block p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+    font-weight: 300;
+  }
+
+  @media (max-width: 1380px) {
     .layout {
-      display: grid;
-      grid-template-columns: 2fr 0.95fr;
-      gap: 70px;
-      align-items: start;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 44px 44px;
-      align-items: start;
-    }
-
-    .artwork {
-      position: relative;
-      display: block;
-      text-decoration: none;
-      color: white;
-      overflow: hidden;
-    }
-
-    .artwork img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-      opacity: 0.78;
-      transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
-      box-shadow: 0 0 0 rgba(0,0,0,0);
-    }
-
-    .artwork::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.12);
-      opacity: 0;
-      transition: opacity 0.45s ease;
-      pointer-events: none;
-    }
-
-    .caption {
-      position: absolute;
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
-      z-index: 2;
-      font-size: 13px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.45s ease, transform 0.45s ease;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.35);
-    }
-
-    .artwork:hover img {
-      opacity: 1;
-      transform: scale(1.02);
-      filter: saturate(1.02);
-    }
-
-    .artwork:hover::after {
-      opacity: 1;
-    }
-
-    .artwork:hover .caption {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .portrait {
-      aspect-ratio: 3 / 4;
-    }
-
-    .landscape {
-      grid-column: 2 / 4;
-      aspect-ratio: 16 / 7;
-      align-self: start;
-    }
-
-    .portrait img,
-    .landscape img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      grid-template-columns: 1fr;
+      gap: 46px;
     }
 
     .text-block {
-      max-width: 360px;
-      padding-top: 8px;
+      max-width: 760px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .text-block p {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.55;
-      color: #555;
-      font-weight: 300;
+    .artwork,
+    .portrait,
+    .landscape {
+      width: 100%;
+      height: auto;
+      grid-column: auto;
     }
 
-    @media (max-width: 1100px) {
-      .layout {
-        grid-template-columns: 1fr;
-        gap: 50px;
-      }
-
-      .text-block {
-        max-width: 700px;
-      }
+    .artwork img {
+      height: auto;
+      aspect-ratio: 3 / 4;
     }
 
-    @media (max-width: 760px) {
-      .page {
-        padding: 22px 20px 32px;
-      }
-
-      .topbar {
-        margin-bottom: 30px;
-      }
-
-      .logo {
-        font-size: 22px;
-        letter-spacing: 4px;
-      }
-
-      .gallery {
-        grid-template-columns: 1fr;
-        gap: 26px;
-      }
-
-      .landscape {
-        grid-column: auto;
-        aspect-ratio: 16 / 10;
-      }
-
-      .portrait {
-        aspect-ratio: 3 / 4;
-      }
-
-      .text-block p {
-        font-size: 16px;
-        line-height: 1.5;
-      }
-
-      .caption {
-        opacity: 1;
-        transform: none;
-      }
-
-      .artwork::after {
-        opacity: 1;
-        background: linear-gradient(to top, rgba(0,0,0,0.28), rgba(0,0,0,0.02));
-      }
-
-      .artwork img {
-        opacity: 1;
-      }
+    .landscape img {
+      aspect-ratio: 16 / 10;
     }
-  </style>
+  }
+
+  @media (max-width: 640px) {
+    .page {
+      padding: 20px 18px 28px;
+    }
+
+    .gallery {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .artwork,
+    .portrait,
+    .landscape {
+      width: 100%;
+    }
+
+    .caption {
+      opacity: 1;
+      transform: none;
+    }
+
+    .artwork::after {
+      opacity: 1;
+      background: linear-gradient(to top, rgba(0,0,0,0.25), rgba(0,0,0,0.03));
+    }
+
+    .artwork img,
+    .landscape img {
+      height: auto;
+      width: 100%;
+      aspect-ratio: auto;
+    }
+  }
+</style>
 </head>
 <body>
   <div class="page">
@@ -220,34 +221,42 @@
 
     <div class="layout">
       <div class="gallery">
-        <a href="#" class="artwork portrait">
-          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 1">
-          <div class="caption">Titre œuvre 1</div>
-        </a>
+<div class="gallery">
+  <a href="#" class="artwork portrait">
+    <img src="LIEN-CLOUDFLARE-IMAGE-1" alt="Œuvre 1">
+    <div class="caption">Titre œuvre 1</div>
+  </a>
 
-        <a href="#" class="artwork portrait">
-          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 2">
-          <div class="caption">Titre œuvre 2</div>
-        </a>
+  <a href="#" class="artwork portrait">
+    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 2">
+    <div class="caption">Titre œuvre 2</div>
+  </a>
 
-        <a href="#" class="artwork portrait">
-          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 3">
-          <div class="caption">Titre œuvre 3</div>
-        </a>
+  <a href="#" class="artwork portrait">
+    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 3">
+    <div class="caption">Titre œuvre 3</div>
+  </a>
 
-        <a href="#" class="artwork portrait">
-          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 4">
-          <div class="caption">Titre œuvre 4</div>
-        </a>
+  <a href="#" class="artwork portrait">
+    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 4">
+    <div class="caption">Titre œuvre 4</div>
+  </a>
 
-        <a href="#" class="artwork portrait">
-          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 5">
-          <div class="caption">Titre œuvre 5</div>
-        </a>
+  <a href="#" class="artwork portrait">
+    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 5">
+    <div class="caption">Titre œuvre 5</div>
+  </a>
 
-        <a href="#" class="artwork landscape">
-          <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 6">
-          <div class="caption">Titre œuvre 6</div>
+  <a href="#" class="artwork portrait">
+    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/morgiou%20encadrement%20transparent.png" alt="Œuvre 6">
+    <div class="caption">Titre œuvre 6</div>
+  </a>
+
+  <a href="#" class="artwork landscape">
+    <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/tidal%20bore%20encadrement%20transparentv2.png" alt="Œuvre 7">
+    <div class="caption">Titre œuvre 7</div>
+  </a>
+</div>
         </a>
       </div>
 
