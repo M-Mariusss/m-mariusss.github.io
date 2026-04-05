@@ -64,22 +64,25 @@ body {
 .artwork {
   width: 120px;
   height: 165px;
+  position: relative;
+  overflow: hidden;
 }
-  .side-image.artwork {
-  width: 100%;
+
+.side-image.artwork {
+  width: 260px;
   height: auto;
+}
+
+.artwork img {
+  width: 100%;
+  display: block;
+  transition: opacity 0.3s ease;
 }
 
 .side-image.artwork img {
   width: 100%;
   height: auto;
   display: block;
-}
-
-.artwork img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }
 
 .side-column {
@@ -95,22 +98,7 @@ body {
   color: #555;
   max-width: 340px;
   margin-bottom: 28px;
-}
-.side-image img {
-  width: 260px;
-  height: auto;
-  display: block;
-}
-  .artwork {
-  position: relative;
-  overflow: hidden;
-}
 
-.artwork img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: opacity 0.3s ease;
 }
 
 .overlay {
