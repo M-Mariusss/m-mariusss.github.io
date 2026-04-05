@@ -36,14 +36,16 @@ body {
 
 .layout {
   display: grid;
-  grid-template-columns: 700px 300px;
-  gap: 60px;
+  grid-template-columns: 760px 340px;
+  column-gap: 80px;
+  align-items: start;
 }
 
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 180px);
-  gap: 40px 60px;
+  column-gap: 28px;
+  row-gap: 42px;
 }
 
 .artwork {
@@ -60,18 +62,20 @@ body {
 .side-column {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .text-block {
   font-size: 15px;
   line-height: 1.5;
   color: #555;
+  max-width: 340px;
+  margin-bottom: 28px;
 }
-
 .side-image img {
-  width: 100%;
+  width: 320px;
   height: auto;
+  display: block;
 }
 </style>
 
