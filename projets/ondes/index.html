@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Ondes</title>
+
+<style>
+body {
+  margin: 0;
+  background: #f3f3f3;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.page {
+  padding: 20px 30px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.logo {
+  letter-spacing: 5px;
+  text-decoration: none;
+  color: #222;
+  font-size: 24px;
+}
+
+.close {
+  text-decoration: none;
+  font-size: 28px;
+  color: #222;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 900px 350px;
+  gap: 60px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 240px);
+  gap: 40px 60px;
+}
+
+.artwork {
+  width: 240px;
+  height: 320px;
+}
+
+.artwork img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.side-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.text-block {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #555;
+}
+
+.side-image img {
+  width: 100%;
+  height: auto;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="topbar">
+    <a href="/projets/" class="logo">ONDES</a>
+    <a href="/projets/" class="close">✕</a>
+  </div>
+
+  <div class="layout">
+
+    <div class="gallery">
+
+      <div class="artwork">
+        <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png">
+      </div>
+
+      <div class="artwork">
+        <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png">
+      </div>
+
+      <div class="artwork">
+        <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png">
+      </div>
+
+      <div class="artwork">
+        <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png">
+      </div>
+
+      <div class="artwork">
+        <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png">
+      </div>
+
+      <div class="artwork">
+        <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20encadrement%20transparent.png">
+      </div>
+
+    </div>
+
+    <div class="side-column">
+
+      <div class="text-block">
+        Texte de présentation du projet Ondes. Tu peux ici décrire la série,
+        son intention, sa matière, sa lumière, son rythme ou son rapport au paysage.
+      </div>
+
+      <div class="side-image">
+        <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/tidal%20bore.png">
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
