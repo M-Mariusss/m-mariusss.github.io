@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Projets</title>
+
+<style>
+body {
+  margin: 0;
+  background: #f4f4f4;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #222;
+}
+
+/* bouton fermer */
+.close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 28px;
+  text-decoration: none;
+  color: black;
+}
+
+/* centre la page */
+.container {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* titre */
+h1 {
+  margin-bottom: 40px;
+  letter-spacing: 3px;
+  font-weight: normal;
+}
+
+/* liste projets */
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  text-align: center;
+}
+
+/* style commun pour les projets */
+.project-link,
+.project-item {
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #222;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+/* effet au survol */
+.project-link:hover,
+.project-item:hover {
+  opacity: 0.6;
+}
+</style>
+
+</head>
+
+<body>
+
+<a href="/" class="close">✕</a>
+
+<div class="container">
+  <h1>PROJETS</h1>
+
+  <div class="projects">
+    <a href="/projets/ondes/" class="project-link">ONDES</a>
+    <div class="project-item">LE LITTORAL OU RIEN</div>
+    <div class="project-item">RÉCIT ARGILEUX</div>
+    <div class="project-item">INTÉRIEUR/EXTÉRIEUR</div>
+  </div>
+</div>
+
+</body>
+</html>
