@@ -91,6 +91,44 @@ body {
   height: auto;
   display: block;
 }
+  .artwork {
+  position: relative;
+  overflow: hidden;
+}
+
+.artwork img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.artwork::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.artwork:hover::after {
+  opacity: 1;
+}
+
+.artwork:hover .overlay {
+  opacity: 1;
+}
 </style>
 
 </head>
