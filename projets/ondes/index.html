@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Ondes</title>
+
+<style>
+body {
+  margin: 0;
+  background: #f5f5f5;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 60px;
+}
+
+.artwork {
+  position: relative;
+}
+
+.artwork img {
+  width: 100%;
+  opacity: 0.7;
+  transition: 0.3s ease;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  opacity: 0;
+  transition: 0.3s ease;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.artwork:hover img {
+  opacity: 1;
+}
+
+.artwork:hover .overlay {
+  opacity: 1;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="gallery">
+
+  <div class="artwork">
+    <img src="TON LIEN IMAGE 1">
+    <div class="overlay">Œuvre 1</div>
+  </div>
+
+  <div class="artwork">
+    <img src="TON LIEN IMAGE 2">
+    <div class="overlay">Œuvre 2</div>
+  </div>
+
+  <div class="artwork">
+    <img src="TON LIEN IMAGE 3">
+    <div class="overlay">Œuvre 3</div>
+  </div>
+
+</div>
+
+</body>
+</html>
