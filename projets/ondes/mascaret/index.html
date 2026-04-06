@@ -271,7 +271,18 @@
       from { width: 0; opacity: 0; }
       to   { width: 3.5rem; opacity: 0.5; }
     }
-
+    
+          .close {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  font-size: 22px;
+  text-decoration: none;
+  color: #222;
+  cursor: pointer;
+  z-index: 1000;
+}
+    
     @media (max-width: 768px) {
       .player {
         width: min(92vw, 720px);
@@ -287,16 +298,6 @@
       .track-title {
         font-size: 1.45rem;
       }
-      .close {
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  font-size: 22px;
-  text-decoration: none;
-  color: #222;
-  cursor: pointer;
-  z-index: 1000;
-}
 
   </style>
 </head>
