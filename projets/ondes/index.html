@@ -180,8 +180,8 @@ body {
 
   .layout {
     display: grid;
-    grid-template-columns: 58% 42%;
-    column-gap: 18px;
+    grid-template-columns: 56% 44%;
+    column-gap: 14px;
     align-items: start;
     margin-top: 12px;
   }
@@ -189,13 +189,19 @@ body {
   .gallery {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 22px;
+    row-gap: 18px;
     justify-items: start;
   }
 
-  .artwork {
+  .gallery .artwork {
+    width: 140px;
+    max-width: 140px;
+  }
+
+  .gallery .artwork img {
     width: 100%;
-    max-width: 200px;
+    height: auto;
+    display: block;
   }
 
   .side-column {
@@ -212,8 +218,14 @@ body {
   }
 
   .side-image.artwork {
+    width: 150px;
+    max-width: 150px;
+  }
+
+  .side-image.artwork img {
     width: 100%;
-    max-width: 180px;
+    height: auto;
+    display: block;
   }
 
   .overlay {
@@ -227,6 +239,7 @@ body {
     opacity: 1;
     background: rgba(0, 0, 0, 0.18);
   }
+}
   
 </style>
 
