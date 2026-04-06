@@ -12,6 +12,16 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   color: #222;
 }
+  @keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* bouton fermer */
 .close {
@@ -24,12 +34,16 @@ body {
 }
 
 /* centre la page */
+}
+
 .container {
   height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  animation: pageFade 0.8s ease;
 }
 
 /* titre */
