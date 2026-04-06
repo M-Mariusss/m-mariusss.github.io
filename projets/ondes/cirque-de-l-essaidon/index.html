@@ -288,11 +288,20 @@
         font-size: 1.45rem;
       }
     }
-
+.close {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  font-size: 22px;
+  text-decoration: none;
+  color: #111;
+  cursor: pointer;
+  z-index: 1000;
+  }
   </style>
 </head>
 <body>
-
+<a href="/projets/ondes/" class="close">✕</a>
 <div class="scene">
   <h1>Cirque de l'Essaidon</h1>
   <div class="divider"></div>
@@ -318,7 +327,8 @@
     </div>
 
     <div class="track-info">
-      <span class="track-title">Cirque de l'Essaidon</span>
+      
+ <span>
       <div class="progress-bar" id="progressBar">
         <div class="progress-fill" id="progressFill"></div>
         <div class="progress-handle" id="progressHandle"></div>
