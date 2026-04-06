@@ -61,6 +61,39 @@ h1 {
 .project-item:hover {
   opacity: 0.6;
 }
+  @media (max-width: 768px) {
+  .container {
+    min-height: 100vh;
+    height: auto;
+    padding: 110px 24px 40px;
+    justify-content: flex-start;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .projects {
+    gap: 26px;
+  }
+
+  .project-link,
+  .project-item,
+  .projects div,
+  .projects a {
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    line-height: 1.35;
+  }
+
+  .close {
+    top: 20px;
+    right: 20px;
+    font-size: 22px;
+  }
+
 </style>
 
 </head>
