@@ -154,6 +154,80 @@ body {
 .side-image {
   animation-delay: 0.7s;
 }
+  
+@media (max-width: 768px) {
+  .page {
+    padding-top: 20px;
+    padding-right: 16px;
+    padding-bottom: 24px;
+    padding-left: 16px;
+  }
+
+  .topbar {
+    margin-bottom: 24px;
+  }
+
+  .logo {
+    font-size: 18px;
+    letter-spacing: 4px;
+  }
+
+  .close {
+    top: 18px;
+    right: 18px;
+    font-size: 18px;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 58% 42%;
+    column-gap: 18px;
+    align-items: start;
+    margin-top: 12px;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 22px;
+    justify-items: start;
+  }
+
+  .artwork {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .side-column {
+    width: 100%;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .text-block {
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  .side-image.artwork {
+    width: 100%;
+    max-width: 180px;
+  }
+
+  .overlay {
+    opacity: 1;
+    bottom: 8px;
+    left: 8px;
+    font-size: 12px;
+  }
+
+  .artwork::after {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.18);
+  }
+  
 </style>
 
 </head>
