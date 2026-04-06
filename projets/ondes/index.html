@@ -190,6 +190,10 @@ body {
 .side-image {
   animation-delay: 0.7s;
 }
+.mobile-only {
+  display: none;
+}
+
 .text-block .note {
   display: block;
   margin-top: 8px;
@@ -206,61 +210,25 @@ body {
     padding: 20px 16px 28px 16px;
   }
 
-  .topbar {
-    margin-bottom: 20px;
-  }
-
-  .logo {
-    font-size: 18px;
-    letter-spacing: 4px;
-  }
-
-  .close {
-    top: 18px;
-    right: 18px;
-    font-size: 18px;
-  }
-
   .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 42%;
     column-gap: 18px;
-    align-items: start;
-    margin-top: 10px;
   }
 
   .gallery {
-    display: grid;
     grid-template-columns: 1fr;
     row-gap: 56px;
-    justify-items: start;
   }
 
   .gallery .artwork {
-    width: min(100%, 150px);
-    max-width: 150px;
-  }
-
-  .gallery .artwork img {
-    width: 100%;
-    height: auto;
-    display: block;
+    width: 140px;
   }
 
   .side-column {
     position: sticky;
     top: 20px;
-    align-self: start;
     margin-left: 0;
-    gap: 0;
-  }
-
-  .text-block {
-    max-width: 100%;
-    margin: 0;
-    font-size: 13px;
-    line-height: 1.45;
-    color: #555;
   }
 
   .text-block br {
@@ -347,15 +315,12 @@ body {
   </div>
 </div>
 
+    
 <a href="/projets/ondes/mascaret/" class="artwork mobile-only">
   <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/tidal%20bore%20cadrepropre.png" alt="Mascaret">
-  <div class="play-icon"></div>
-  <div class="overlay">
-    <span>Mascaret</span>
-  </div>
 </a>
 
-    </div>
+</div>
 
     <div class="side-column">
 
