@@ -1,1 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Ondes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<style>
+body {
+  margin: 0;
+  background: #f3f3f3;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.page {
+  padding-top: 40px;
+  padding-right: 30px;
+  padding-bottom: 40px;
+  padding-left: 80px;
+  position: relative;
+
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+
+.logo {
+  letter-spacing: 5px;
+  text-decoration: none;
+  color: #222;
+  font-size: 24px;
+}
+
+.close {
+  text-decoration: none;
+  font-size: 28px;
+  color: #222;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 820px 460px;
+  column-gap: 50px;
+  align-items: start;
+  margin-top: 70px;
+}
+  .close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 180px);
+  column-gap: 130px;
+  row-gap: 80px;
+}
+
+.artwork {
+  width: 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.side-image.artwork {
+  width: 260px;
+  height: auto;
+}
+
+.artwork img {
+  width: 100%;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.side-image.artwork img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.side-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  margin-left: 110px;
+}
+
+.text-block {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #555;
+  max-width: 480px;
+  margin-bottom: 28px;
+
+}
+
+.overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.artwork::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.artwork:hover::after {
+  opacity: 1;
+}
+
+.artwork:hover .overlay {
+  opacity: 1;
+}@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+     }
+  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+     }
+}
+  .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 52px;
+  height: 52px;
+  transform: translate(-50%, -50%) scale(0.92);
+  border: 1.5px solid rgba(255,255,255,0.95);
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+  
+
+.play-icon::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-38%, -50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid rgba(255,255,255,0.95);
+}
+
+.artwork:hover .play-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+  
+
+.artwork,
+.side-image {
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards;
+}
+  .gallery .artwork:nth-child(1) { animation-delay: 0.1s; }
+.gallery .artwork:nth-child(2) { animation-delay: 0.2s; }
+.gallery .artwork:nth-child(3) { animation-delay: 0.3s; }
+.gallery .artwork:nth-child(4) { animation-delay: 0.4s; }
+.gallery .artwork:nth-child(5) { animation-delay: 0.5s; }
+.gallery .artwork:nth-child(6) { animation-delay: 0.6s; }
+
+.side-image {
+  animation-delay: 0.7s;
+}
+.mobile-only {
+  display: none;
+}
+
+.text-block .note {
+  display: block;
+  margin-top: 8px;
+  color: #666;
+  font-size: 12px;
+}
+  
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .page {
+    padding: 20px 16px 28px 16px;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 42%;
+    column-gap: 18px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    row-gap: 56px;
+  }
+
+  .gallery .artwork {
+    width: 140px;
+  }
+
+  .side-column {
+    position: sticky;
+    top: 20px;
+    margin-left: 0;
+  }
+
+  .text-block br {
+    display: none;
+  }
+
+  .side-image.artwork {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .overlay,
+  .artwork::after,
+  .play-icon {
+    display: none;
+  }
+}
+  
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="topbar">
+    <a href="/projets/" class="logo">ONDES</a>
+    <a href="/projets/" class="close">✕</a>
+  </div>
+
+  <div class="layout">
+
+    <div class="gallery">
+
+  <a href="/projets/ondes/samena/" class="artwork">
+  <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20cadrepropre.png">
+     <div class="play-icon"></div>
+  <div class="overlay">
+    <span>Saména</span>
+  </div>
+</a>
+      
+  <a href="/projets/ondes/cirque-de-l-essaidon/" class="artwork">
+  <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/cirquerecadre%CC%81.png">
+     <div class="play-icon"></div>
+  <div class="overlay">
+    <span>Cirque de l'Essaidon</span>
+  </div>
+</a>
+
+<a href="/projets/ondes/samena/" class="artwork">
+  <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ilot%20du%20dromadaire%20v2.png">
+   <div class="play-icon"></div>
+  <div class="overlay">
+    <span>Saména</span>
+  </div>
+</a>
+      
+      <div class="artwork">
+  <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/grotte%20de%20Me%CC%81jeanv2.png">
+         <div class="play-icon"></div>
+  <div class="overlay">
+    <span>Grotte de Méjean</span>
+  </div>
+</div>
+
+       <div class="artwork">
+  <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/ocean3.png">
+          <div class="play-icon"></div>
+  <div class="overlay">
+    <span>Plage de l'abricotier</span>
+  </div>
+</div>
+
+    <div class="artwork">
+  <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/i%CC%82le%20de%20l'everine.png">
+       <div class="play-icon"></div>
+  <div class="overlay">
+    <span>Île de l'Érevine</span>
+  </div>
+</div>
+
+    
+<a href="/projets/ondes/plage-de-l-abricotier/" class="artwork mobile-only">
+  <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/tidal%20bore%20cadrepropre.png" alt="Mascaret">
+</a>
+
+</div>
+
+    <div class="side-column">
+
+<div class="text-block">
+S'appuyant sur le littoral comme territoire<br>
+mental autant que physique,cette série tente<br>
+de traduire ce que l'on peut éprouver dans ce<br>
+décor. Le mouvement incessant de l'eau, les<br>
+variations de lumière. À chaque œuvre est associée<br>
+une composition musicale originale.Ici,le son est<br> 
+la continuation naturelle de l'expérience,une autre<br> 
+façon de retranscrire ce que la peinture a
+commencé.Ensemble, image et musique forment<br> 
+un seul geste.
+  
+<span class="note">chaque œuvre donne accès à une composition sonore</span>
+</div>
+
+<a href="/projets/ondes/plage-de-l-abricotier/" class="side-image artwork">
+  <img src="https://pub-c0638a386edd4fe9a86f732550fd758a.r2.dev/plage%20de%20l'abricotier.png">
+   <div class="play-icon"></div>
+  <div class="overlay">
+    <span>Madrague</span>
+  </div>
+</a>
+
+    </div>
+
+  </div>
+
+</div>
+<script>
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+</script>
+    
+</body>
+</html>
